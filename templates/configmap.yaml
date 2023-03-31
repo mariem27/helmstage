@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mon-config-map
+data:
+  SPRING_URL: http://spring-service:8089
+  ANGULAR_URL: http://angular:80
+  MYSQL_URL: http://mysqldb:3306

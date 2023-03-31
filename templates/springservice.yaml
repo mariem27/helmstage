@@ -1,0 +1,16 @@
+# Define a 'Service' To Expose the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-service
+  namespace: default
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 8089    # Port inside the cluster
+      targetPort:    # Port exposed to the outside
+#      nodePort: 30100
+  selector:
+    app: spring
+#  type: NodePort
+

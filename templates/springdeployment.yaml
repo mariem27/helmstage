@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: spring
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: spring
+    spec:
+      containers:
+        - name: spring
+          image: mariemayadi/bckend:latest
+          ports:
+            - containerPort: 8089
+          env:   # Setting Environmental Variables
+            - name: MYSQL_HOST  # Setting Database host address
+              value: mysqldb
+            - name: MYSQL_DATABASE  # Setting Database name
+              value: achatdb
+            - name: MYSQL_USER  # Setting Database username
+              value: root
+            - name: MYSQL_PASSWORD # Setting Database password
+              value: root
+            - name: SPRING_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mon-config-map
+                  key: SPRING_URL
+# This seperator --- below is MANDATORY!!!
+---
+
